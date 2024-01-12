@@ -37,10 +37,19 @@ export default function Home() {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(inputValue === ""){
+      alert("Please fill username!")
+      return;
+    }
   
     try {
       const response = await fetch(`/api/hello?inputValue=${encodeURIComponent(inputValue)}`);
       const data = await response.json();
+      if(data.message == "Not Found"){
+        alert("User Not Found.");
+        return;
+      }
       setUserData(data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -52,9 +61,12 @@ export default function Home() {
 
   return (
     <main className={`flex flex-col gap-5 h-screen px-4 items-center bg-black !font-sans ${inter.className}`} >
+      <div>
+        <p className='text-cyan-400 mt-4 text-2xl animate-pulse font-sen font-extrabold uppercase'>Search github profile</p>
+      </div>
 
       {/* search section */}
-      <div className=' md:w-[40%] w-full mt-12 rounded-xl py-8 border border-cyan-400 px-8'>
+      <div className=' md:w-[40%] w-full md:mt-4 mt-0 rounded-xl py-8 border border-cyan-400 px-8'>
         <form className='flex justify-between items-center' onSubmit={handleSubmit}>
           <input
             className='text-black border w-[72%] py-2 px-4 rounded-lg font-rajdhani font-bold tracking-wide'
@@ -72,7 +84,7 @@ export default function Home() {
 
       {/* profile section */}
       {userData && (
-        <div className='md:w-[50%] w-full px-0 md:px-8 py-4 md:mt-8 mt-0'>
+        <div className='md:w-[40%] w-full px-0 md:px-8 md:py-4 py-0'>
           <Tabs value="profile">
             <TabsHeader className="bg-transparent gap-4">
               {data.map(({ label, value }) => (
