@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+For this Project I use github api for search github users data using the username only.
+
+
+![searchgithubusers-dman vercel app - Brave 18-01-2024 12_33_34](https://github.com/dee2025/searchgithubusers/assets/108868111/b6ee70f5-1cfc-4126-90eb-a3936327209b)
+
+
 ## Getting Started
 
 First, run the development server:
